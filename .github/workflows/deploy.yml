@@ -42,7 +42,7 @@ jobs:
           SOURCE: "dist/" 
           TARGET: "/var/www/abastopro/public" 
           
-          # Comandos Post-Despliegue  
+          # Comandos Post-Desplie
           SCRIPT_AFTER_DEPLOY: |
             echo "✅ Despliegando exitoso en /var/www/abastopro/public"
             # Si necesitas reiniciar Nginx/Apache, descomenta y ajusta el comando:
