@@ -1,20 +1,50 @@
-name: Despliegue en Producción
+name: Despliegue Rápido de Angular en VPS
 
 on:
-  # El flujo de trabajo se ejecutará SÓLO cuando haya un 'push' 
-  # a la rama listada en 'branches'.
   push:
     branches:
       - main 
-    jobs:
-      deploy:
-        runs-on: ubuntu-latest
-        
-        steps:
-          # ... (Pasos de checkout y setup previos)
 
-          - name: Mensaje de Inicio del Despliegue
-            run: |
-              echo "======================================"
-              echo "✅ ¡Iniciando el proceso de Despliegue! 🚀"
-              echo "======================================"
+jobs:
+  deploy:
+    runs-on: ubuntu-latest # Ejecuta en una máquina virtual de Ubuntu
+    
+    steps:
+      
+      # 1. Checkout: Clona tu código en el runner de GitHub Actions
+      - name: Clonar Repositorio
+        uses: actions/checkout@v4 
+
+      # 2. Build: Instala dependencias y compila tu proyecto Angular
+      #    Nota: La acción setup-node@v4 ya viene con npm/npx.
+      - name: Instalación y Build de Angular
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Usa la versión de Node.js que necesites
+          
+      - name: Ejecutar Instalación y Build
+        run: |
+          echo "➡️ Instalando dependencias..."
+          npm install
+          echo "➡️ Generando build de producción..."
+          # Asegúrate de que esta ruta de salida coincida con tu carpeta de 'dist/'
+          npm run build -- --configuration=production 
+
+      # 3. Deploy: Conexión SSH y copia de archivos
+      - name: Copiar Archivos a VPS vía SSH
+        uses: easingthemes/ssh-deploy@main
+        with:
+          # Configuración de Conexión Segura
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
+          
+          # Rutas de Origen y Destino
+          SOURCE: "dist/" 
+          TARGET: "/var/www/abastopro/public" # Tu ruta específica
+          
+          # Comandos Post-Despliegue (Opcional)
+          SCRIPT_AFTER_DEPLOY: |
+            echo "✅ Despliegue exitoso en /var/www/abastopro/public"
+            # Si necesitas reiniciar Nginx/Apache, descomenta y ajusta el comando:
+            # sudo systemctl restart nginx
