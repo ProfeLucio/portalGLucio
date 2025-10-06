@@ -39,7 +39,6 @@ jobs:
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
           
-          # Rutas de Origen y Destino
           SOURCE: "dist/" 
           TARGET: "/var/www/abastopro/public" # Tu ruta específica
           
