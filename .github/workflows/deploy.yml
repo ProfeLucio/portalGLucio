@@ -40,7 +40,7 @@ jobs:
           REMOTE_USER: ${{ secrets.SSH_USER }}
           
           SOURCE: "dist/" 
-          TARGET: "/var/www/abastopro/public" # Tu ruta específica
+          TARGET: "/var/www/abastopro/public" 
           
           # Comandos Post-Despliegue .  
           SCRIPT_AFTER_DEPLOY: |
