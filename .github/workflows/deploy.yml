@@ -1,0 +1,20 @@
+name: Despliegue en Producción
+
+on:
+  # El flujo de trabajo se ejecutará SÓLO cuando haya un 'push' 
+  # a la rama listada en 'branches'.
+  push:
+    branches:
+      - main 
+    jobs:
+      deploy:
+        runs-on: ubuntu-latest
+        
+        steps:
+          # ... (Pasos de checkout y setup previos)
+
+          - name: Mensaje de Inicio del Despliegue
+            run: |
+              echo "======================================"
+              echo "✅ ¡Iniciando el proceso de Despliegue! 🚀"
+              echo "======================================"
