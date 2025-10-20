@@ -3,47 +3,61 @@ name: Despliegue Rápido de Angular en VPS
 on:
   push:
     branches:
-      - main 
+      - main # Se ejecuta cuando se hace push a la rama principal (main)
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest # Ejecuta en una máquina virtual de Ubuntu
-    
-    steps:
-      
-      # 1. Checkout: Clona tu código en el runner de GitHub Actions
-      - name: Clonar Repositorio
-        uses: actions/checkout@v4 
+    # Usar el directorio de trabajo predeterminado para que 'dist/' sea fácil de referenciar
+    runs-on: ubuntu-latest
 
-      # 2. Build: Instala dependencias y compila tu proyecto Angular
-      #    Nota: La acción setup-node@v4 ya viene con npm/npx.
-      - name: Instalación y Build de Angular
+    steps:
+
+      # 1. Checkout: Clona tu código en el runner
+      - name: Clonar Repositorio
+        uses: actions/checkout@v4
+
+      # 2. Configuración de Node.js
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Usa la versión de Node.js que necesites
-          
-      - name: Ejecutar Instalación y Build
+          node-version: '20' # Versión LTS recomendada
+
+      # 3. Cache de dependencias: Acelera el proceso si el package-lock.json no ha cambiado
+      - name: Cache de dependencias (node_modules)
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # 4. Build: Instalación y compilación
+      - name: Instalación y Build de Producción
         run: |
           echo "➡️ Instalando dependencias..."
           npm install
           echo "➡️ Generando build de producción..."
-          # Asegúrate de que esta ruta de salida coincida con tu carpeta de 'dist/'
-          npm run build -- --configuration=production 
+          # Genera la carpeta 'dist' en la raíz del proyecto
+          npm run build -- --configuration=production
 
-      # 3. Deploy: Conexión SSH y copia de archivos
-      - name: Copiar Archivos a VPS vía SSH
+      # 5. Deploy: Conexión SSH y copia de archivos
+      - name: Copiar Archivos a VPS vía SSH (rsync)
         uses: easingthemes/ssh-deploy@main
         with:
-          # Configuración de Conexión Segura
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          # --- CORRECCIÓN DE ERRORES PREVIOS ---
+          # ❌ Anteriormente estaba 'SSH_KEY', ahora es 'SSH_PRIVATE_KEY' (MANDATORIO)
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }} # Usar el nombre del secreto que creaste
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
-          
-          SOURCE: "dist/" 
-          TARGET: "/var/www/abastopro/public" 
-          
-          # Comandos Post-Desplie
-          SCRIPT_AFTER_DEPLOY: |
-            echo "✅ Despliegando exitoso en /var/www/abastopro/public"
-            # Si necesitas reiniciar Nginx/Apache, descomenta y ajusta el comando:
-            # sudo systemctl restart nginx
+
+          # Archivos a copiar
+          # NOTA: 'dist/tu-app-name' puede ser la ruta real si usas Angular 16+ con un proyecto anidado
+          SOURCE: "dist/"
+          TARGET: "/var/www/gportal"
+
+          # --- CORRECCIÓN DE ERRORES PREVIOS ---
+          # ⚠️ Anteriormente era 'SCRIPT_AFTER_DEPLOY', ahora es 'SCRIPT_AFTER'
+          SCRIPT_AFTER: |
+            echo "✅ Despliegue exitoso en /var/www/gportal."
+            # Si tu aplicación requiere que se reinicie el servidor web:
+            # sudo systemctl restart apache2
