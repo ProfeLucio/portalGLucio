@@ -52,8 +52,8 @@ jobs:
 
           # Archivos a copiar
           # NOTA: 'dist/tu-app-name' puede ser la ruta real si usas Angular 16+ con un proyecto anidado
-          SOURCE: "dist/"
-          TARGET: "/var/www/gportal"
+          SOURCE: "dist/pageLucio/browser/"
+          TARGET: "/var/www/abastopro/public"
 
           # --- CORRECCIÓN DE ERRORES PREVIOS ---
           # ⚠️ Anteriormente era 'SCRIPT_AFTER_DEPLOY', ahora es 'SCRIPT_AFTER'
