@@ -1,13 +1,39 @@
-
-<p>
-    Juemadre!! Se pudo 3
-</p>
-{{ usuario.name }}
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto nisi accusamus quibusdam recusandae excepturi, similique dignissimos asperiores harum eos modi voluptatibus facere assumenda neque eveniet alias mollitia architecto, incidunt quas!
-Rerum quaerat ad minima deleniti nisi molestias, est error dolores rem, sit fuga consequatur reiciendis. Voluptates, necessitatibus molestiae inventore quis sequi ipsum odit minus, velit a, in voluptatem! Temporibus, neque!
-Similique deserunt nobis rerum neque est a inventore temporibus fugit quidem laboriosam, ab itaque iusto sapiente. Officiis, ipsam et voluptatibus delectus modi, distinctio adipisci pariatur repellendus accusantium dignissimos, sapiente earum.
-Illo cumque pariatur consectetur nesciunt quibusdam omnis adipisci labore debitis eaque repellat magni recusandae asperiores alias dolor a distinctio, sint placeat quasi voluptatum tempora voluptates, quam necessitatibus? Nam, quasi non?
-Laudantium, voluptas laboriosam, numquam autem illum, excepturi aspernatur soluta expedita facere quod hic officiis odio placeat fuga qui sed. Corrupti consequatur reprehenderit facere quos, voluptatem facilis nostrum praesentium quibusdam asperiores!
-Odio recusandae eum, nizxczxczxchil dicta minima inventore veniam voluptas nam, et, esse facere hic consectetur? Facilis, ipsa. Natus quod ducimus ad corporis, quo fuga nulla ipsa fugiat aperiam sequi facilis?
-Illum quisquam provident distinctio omnis natus quaerat, voluptatibus sapiente officia nemo! Fugiat corrupti commodi eos, nihil nemo numquam excepturi eaque deserunt ex sint qui labore nostrum placeat necessitatibus ipsam debitis.
-<app-acordeon></app-acordeon>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="/assets/images/{{ usuario.image }}" class="card-img-top" alt="Foto">
+                <div class="card-body">
+                    <h5 class="card-title">{{ usuario.name }}</h5>
+                    <p class="card-text">Profesor universitario. En este sitio encontrarás información de formación, producción académica y cursos.</p>
+                    <a class="btn btn-primary" routerLink="/formation">Ver Formación</a>
+                    <a class="btn btn-secondary ms-2" routerLink="/production">Ver Producción</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h4>Resumen rápido</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="list-group">
+                        <div class="list-group-item active">Formación</div>
+                        <div *ngFor="let f of formation" class="list-group-item">
+                            <strong>{{ f.title }}</strong><br>
+                            {{ f.institution }} - {{ f.year }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="list-group">
+                        <div class="list-group-item active">Cursos</div>
+                        <div *ngFor="let c of courses" class="list-group-item">
+                            <strong>{{ c.code }} - {{ c.name }}</strong><br>
+                            <small>Semestre: {{ c.semester }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <app-acordeon></app-acordeon>
+        </div>
+    </div>
+</div>

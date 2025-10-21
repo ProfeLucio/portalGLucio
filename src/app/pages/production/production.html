@@ -1,0 +1,35 @@
+<div class="container mt-3">
+  <h2>Producción Académica</h2>
+  <p>Software, publicaciones y trabajos de grado.</p>
+  <div class="row" id="production-list">
+    <div class="col-md-6">
+      <h5>Software</h5>
+      <ul class="list-group">
+        <li *ngFor="let s of production.software" class="list-group-item">
+          <strong>{{ s.name }}</strong>
+          <p class="mb-0">{{ s.description }}</p>
+          <a [href]="s.link" class="small">Enlace</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h5>Publicaciones</h5>
+      <ul class="list-group">
+        <li *ngFor="let p of production.publications" class="list-group-item">
+          <strong>{{ p.title }}</strong>
+          <div><small>{{ p.journal }} — {{ p.year }}</small></div>
+          <a [href]="p.link" class="small">Ver</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-12 mt-3">
+      <h5>Trabajos de grado</h5>
+      <ul class="list-group">
+        <li *ngFor="let t of production.theses" class="list-group-item">
+          <strong>{{ t.title }}</strong> — {{ t.student }} ({{ t.year }})
+          <a [href]="t.link" class="small ms-2">Ver</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

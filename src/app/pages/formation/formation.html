@@ -1,0 +1,10 @@
+<div class="container mt-3">
+  <h2>Formación</h2>
+  <p>Espacio para detallar la formación: títulos, cursos, diplomados y certificaciones.</p>
+  <div class="list-group" id="formation-list">
+    <div *ngFor="let f of formation" class="list-group-item">
+      <h5 class="mb-1">{{ f.title }}</h5>
+      <small>{{ f.institution }} — {{ f.year }}</small>
+    </div>
+  </div>
+</div>

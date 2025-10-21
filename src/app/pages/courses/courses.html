@@ -1,0 +1,27 @@
+<div class="container mt-3">
+  <h2>Cursos que Dirijo</h2>
+  <p>Listado de cursos semestrales con planeador, contenidos y recursos.</p>
+  <div class="accordion" id="courses-accordion">
+    <div *ngFor="let c of courses; let i = index" class="accordion-item">
+      <h2 class="accordion-header" id="heading{{i}}">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" aria-expanded="false" [attr.aria-controls]="'collapse' + i">
+          {{ c.code }} - {{ c.name }} ({{ c.semester }})
+        </button>
+      </h2>
+      <div id="collapse{{i}}" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i" data-bs-parent="#courses-accordion">
+        <div class="accordion-body">
+          <h6>Planeador</h6>
+          <p>{{ c.planner }}</p>
+          <h6>Contenidos</h6>
+          <ul>
+            <li *ngFor="let ct of c.contents">{{ ct }}</li>
+          </ul>
+          <h6>Recursos</h6>
+          <ul>
+            <li *ngFor="let r of c.resources"><a [href]="r.link">{{ r.name }}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
