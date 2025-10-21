@@ -1,0 +1,15 @@
+/* Copiado del tema StartBootstrap: estilos específicos para resume (reduce si hace falta) */
+
+.resume-section {
+  padding: 4rem 0;
+}
+
+.resume-section-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.img-profile {
+  width: 150px;
+  height: 150px;
+}

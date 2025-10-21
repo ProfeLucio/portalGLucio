@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data.service';
 
 @Component({
-  selector: 'app-courses',
+  selector: 'app-resume',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './courses.html',
-  styleUrls: ['./courses.css']
+  templateUrl: './resume.html',
+  styleUrls: ['./resume.css']
 })
-export class Courses {
-  public courses = DataService.getCourses();
+export class Resume {
+  public resume = DataService.getResume();
+  public production = DataService.getProduction();
 }

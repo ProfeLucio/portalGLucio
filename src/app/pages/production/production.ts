@@ -7,7 +7,7 @@ import { DataService } from '../../services/data.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './production.html',
-  styleUrl: './production.css'
+  styleUrls: ['./production.css']
 })
 export class Production {
   public production = DataService.getProduction();

@@ -1,0 +1,60 @@
+/* Custom CSS para los niveles de habilidad */
+
+.skills-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 2rem;
+}
+
+.skill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.2rem 0;
+}
+
+.skill-name {
+  flex-grow: 1;
+  margin-right: 1rem;
+  /* Utiliza el color principal del texto del cuerpo (Dark Gray) */
+  color: var(--bs-body-color); /* #212529 */
+}
+
+.skill-level {
+  display: flex;
+  gap: 0.35rem; /* Espacio entre los círculos */
+}
+
+.circle {
+  display: inline-block;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+
+  /* CÍRCULO VACÍO (GRIS CLARO/CONTORNO) */
+  /* Fondo gris claro para ser visible sobre blanco */
+  background-color: var(--bs-gray-200); /* #e9ecef */
+  /* Borde gris para definir el círculo vacío */
+  border: 1px solid var(--bs-gray-500); /* #adb5bd */
+}
+
+.circle.filled {
+  /* CÍRCULO LLENO (COLOR PRIMARIO DEL TEMA) */
+  /* Utiliza el color --bs-primary: #bd5d38 (Naranja/Marrón) */
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+/* Ajuste de color para el subtítulo de la categoría de habilidades */
+.subheading {
+  font-size: 1.5rem;
+  /* Utiliza el color primario del tema para destacar el subtítulo */
+  color: var(--bs-primary); /* #bd5d38 */
+  margin-top: 1rem;
+}
+
+.dev-icons i {
+  /* Asegura que los íconos de tecnología también usen el color primario */
+  color: var(--bs-primary);
+}

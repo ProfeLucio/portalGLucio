@@ -1,0 +1,122 @@
+<div class="container-fluid p-0">
+  <section class="resume-section" id="about" *ngIf="resume">
+    <div class="resume-section-content d-flex align-items-center">
+      <div class="me-4">
+        <img *ngIf="resume.image" [src]="resume.image" alt="foto" class="img-fluid img-profile rounded-circle" />
+      </div>
+      <div>
+        <h1 class="mb-0">
+          {{ resume.name }}
+          <span class="text-primary">{{ resume.surname }}</span>
+        </h1>
+        <div class="subheading mb-2">{{ resume.address }} <span *ngIf="resume.phone">· {{ resume.phone }}</span> · <a [href]="'mailto:' + resume.email">{{ resume.email }}</a></div>
+        <p class="lead mb-3">{{ resume.summary }}</p>
+        <div class="social-icons">
+          <a *ngFor="let s of resume.social" class="social-icon me-2" [href]="s.link" target="_blank" rel="noopener noreferrer"><i [class]="s.icon"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+        <!-- Producción Académica -->
+        <section class="resume-section" id="production">
+          <div class="resume-section-content">
+            <h2 class="mb-5">Producción Académica</h2>
+            <div class="row">
+              <div class="col-md-6">
+                <h5>Software</h5>
+                <ul class="list-group mb-3">
+                  <li *ngFor="let s of production.software" class="list-group-item">
+                    <strong>{{ s.name }}</strong>
+                    <p class="mb-0">{{ s.description }}</p>
+                    <a [href]="s.link" target="_blank" class="small">Ir al proyecto</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h5>Publicaciones</h5>
+                <ul class="list-group mb-3">
+                  <li *ngFor="let p of production.publications" class="list-group-item">
+                    <strong>{{ p.title }}</strong>
+                    <div><small>{{ p.venue }} — {{ p.year }}</small></div>
+                    <a [href]="p.link" target="_blank" class="small">Ver</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12">
+                <h5>Trabajos de grado</h5>
+                <ul class="list-group">
+                  <li *ngFor="let t of production.theses" class="list-group-item">
+                    <strong>{{ t.title }}</strong> — {{ t.author }} ({{ t.year }})
+                    <a [href]="t.link" class="small ms-2" target="_blank">Ver</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+  <hr class="m-0" />
+
+  <section class="resume-section" id="experience" *ngIf="resume.experience">
+    <div class="resume-section-content">
+      <h2 class="mb-5">Experiencia</h2>
+      <div *ngFor="let e of resume.experience" class="d-flex flex-column flex-md-row justify-content-between mb-5">
+        <div class="flex-grow-1">
+          <h3 class="mb-0">{{ e.title }}</h3>
+          <div class="subheading mb-3">{{ e.company }}</div>
+          <p>{{ e.description }}</p>
+        </div>
+        <div class="flex-shrink-0"><span class="text-primary">{{ e.period }}</span></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="m-0" />
+
+  <section class="resume-section" id="education" *ngIf="resume.education">
+    <div class="resume-section-content">
+      <h2 class="mb-5">Educación</h2>
+      <div *ngFor="let ed of resume.education" class="d-flex flex-column flex-md-row justify-content-between mb-5">
+        <div class="flex-grow-1">
+          <h3 class="mb-0">{{ ed.institution }}</h3>
+          <div class="subheading mb-3">{{ ed.degree }}</div>
+          <div>{{ ed.details }}</div>
+        </div>
+        <div class="flex-shrink-0"><span class="text-primary">{{ ed.period }}</span></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="m-0" />
+
+  <section class="resume-section" id="skills" *ngIf="resume.skills">
+    <div class="resume-section-content">
+      <h2 class="mb-5">Habilidades</h2>
+      <ul class="list-inline dev-icons">
+        <li *ngFor="let sk of resume.skills" class="list-inline-item"><i [class]="sk"></i></li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="m-0" />
+
+  <section class="resume-section" id="interests" *ngIf="resume.interests">
+    <div class="resume-section-content">
+      <h2 class="mb-5">Intereses</h2>
+      <p>{{ resume.interests }}</p>
+    </div>
+  </section>
+
+  <hr class="m-0" />
+
+  <section class="resume-section" id="awards" *ngIf="resume.awards">
+    <div class="resume-section-content">
+      <h2 class="mb-5">Premios y Certificaciones</h2>
+      <ul class="fa-ul mb-0">
+        <li *ngFor="let a of resume.awards"><span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>{{ a }}</li>
+      </ul>
+    </div>
+  </section>
+</div>

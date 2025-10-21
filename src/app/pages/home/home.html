@@ -1,17 +1,149 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <app-aside></app-aside>
-        </div>
-        <div class="col-md-9">
-            <app-main></app-main>
-        </div>
+<main id="page-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <span class="d-block d-lg-none">{{ cvData.firstName }} {{ cvData.lastName }}</span>
+        <span class="d-none d-lg-block">
+            <img class="img-fluid img-profile rounded-circle mx-auto mb-2" [src]="cvData.photoUrl" alt="..." />
+        </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav">
+            @for (item of cvData.navItems; track item.href) {
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" [href]="item.href">{{ item.name }}</a>
+                </li>
+            }
+        </ul>
     </div>
-</div>
-<footer>
-    <ul>
-        <li>ssh-keygen -t ed25519 -C "tu_correo@ejemplo.com"</li>
-        <li>cat ~/.ssh/id_ed25519</li>
-        <li>cat mi_clave.pub >> ~/.ssh/authorized_keys</li>
-    </ul>
-</footer>
+    </nav>
+
+    <div class="container-fluid p-0">
+        <section class="resume-section" id="about">
+            <div class="resume-section-content">
+                <h1 class="mb-0">
+                    {{ cvData.firstName }}
+                    <span class="text-primary">{{ cvData.lastName }}</span>
+                </h1>
+                <div class="subheading mb-5">
+                    {{ cvData.address }} · {{ cvData.phone }} ·
+                    <a [href]="'mailto:' + cvData.email">{{ cvData.email }}</a>
+                </div>
+                <p class="lead mb-5">{{ cvData.summary }}</p>
+                <div class="social-icons">
+                    @for (link of cvData.socialLinks; track link.icon) {
+                        <a class="social-icon" [href]="link.url">
+                            <i [class]="link.icon"></i>
+                        </a>
+                    }
+                </div>
+            </div>
+        </section>
+        <hr class="m-0" />
+
+        <section class="resume-section" id="experience">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Experience</h2>
+                @for (job of cvData.experience; track job.position) {
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">{{ job.position }}</h3>
+                            <div class="subheading mb-3">{{ job.company }}</div>
+                            <p>{{ job.description }}</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">{{ job.period }}</span></div>
+                    </div>
+                } @empty {
+                    <p>No hay experiencia laboral registrada.</p>
+                }
+            </div>
+        </section>
+        <hr class="m-0" />
+
+        <section class="resume-section" id="education">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Formación</h2>
+                @for (edu of cvData.education; track edu.institution) {
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="my-0">{{ edu.degree }}</h3>
+                            <div class="subheading my-0">{{ edu.institution }}</div>
+                            @if (edu.area) {
+                                <div>{{ edu.area }}</div>
+                            }
+                            <p>GPA: {{ edu.gpa }}</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">{{ edu.period }}</span></div>
+                    </div>
+                }
+            </div>
+        </section>
+        <hr class="m-0" />
+
+        <section class="resume-section" id="skills">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Skills</h2>
+
+                @for (category of cvData.skillCategories; track category.name) {
+                    <div class="subheading mb-3">{{ category.name }}</div>
+                    <ul class="skills-list"> @for (skill of category.skills; track skill.name) {
+                            <li class="skill-item">
+                                <span class="skill-name">{{ skill.name }}</span>
+                                <span class="skill-level">
+                                    @for (circle of getSkillLevelCircles(skill.level); track $index) {
+                                        <span class="circle" [class.filled]="circle"></span>
+                                    }
+                                </span>
+                            </li>
+                        }
+                    </ul>
+                    <br> }
+
+                <div class="subheading mb-3 mt-4">Programación General & Herramientas</div>
+                <ul class="list-inline dev-icons">
+                    @for (iconClass of cvData.devIcons; track $index) {
+                        <li class="list-inline-item">
+                            <i [class]="iconClass"></i>
+                        </li>
+                    }
+                </ul>
+
+                <div class="subheading mb-3 mt-4">Workflow</div>
+                <ul class="fa-ul mb-0">
+                    @for (item of cvData.workflow; track $index) {
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            {{ item.description }}
+                        </li>
+                    }
+                </ul>
+            </div>
+        </section>
+        <hr class="m-0" />
+
+
+        <section class="resume-section" id="interests">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Interests</h2>
+                <p>{{ cvData.interestsParagraph1 }}</p>
+                <p class="mb-0">{{ cvData.interestsParagraph2 }}</p>
+            </div>
+        </section>
+        <hr class="m-0" />
+
+        <section class="resume-section" id="awards">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Awards & Certifications</h2>
+                <ul class="fa-ul mb-0">
+                    @for (award of cvData.awards; track $index) {
+                        <li>
+                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                            <span [innerHTML]="award.description"></span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </section>
+    </div>
+</main>

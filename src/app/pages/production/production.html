@@ -17,7 +17,7 @@
       <ul class="list-group">
         <li *ngFor="let p of production.publications" class="list-group-item">
           <strong>{{ p.title }}</strong>
-          <div><small>{{ p.journal }} — {{ p.year }}</small></div>
+          <div><small>{{ p.venue }} — {{ p.year }}</small></div>
           <a [href]="p.link" class="small">Ver</a>
         </li>
       </ul>
@@ -26,7 +26,7 @@
       <h5>Trabajos de grado</h5>
       <ul class="list-group">
         <li *ngFor="let t of production.theses" class="list-group-item">
-          <strong>{{ t.title }}</strong> — {{ t.student }} ({{ t.year }})
+          <strong>{{ t.title }}</strong> — {{ t.author }} ({{ t.year }})
           <a [href]="t.link" class="small ms-2">Ver</a>
         </li>
       </ul>

@@ -7,7 +7,7 @@ import { DataService } from '../../services/data.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './formation.html',
-  styleUrl: './formation.css'
+  styleUrls: ['./formation.css']
 })
 export class Formation {
   public formation = DataService.getFormation();
