@@ -20,7 +20,8 @@ export interface Education {
   degree: string;
   area: string;
   gpa: string;
-  period: string; // Ej: 'August 2006 - May 2010'
+  period: string;
+  duration?: string;
 }
 
 /** Estructura para una habilidad de flujo de trabajo (Workflow) */
@@ -59,7 +60,7 @@ export interface CvData {
 
   // --- Experience ---
   experience: Experience[];
-
+  managerjobs: Experience[];
   // --- Education ---
   education: Education[];
 

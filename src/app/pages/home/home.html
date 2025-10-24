@@ -33,7 +33,7 @@
                 <p class="lead mb-5">{{ cvData.summary }}</p>
                 <div class="social-icons">
                     @for (link of cvData.socialLinks; track link.icon) {
-                        <a class="social-icon" [href]="link.url">
+                        <a class="social-icon" [href]="link.url" target="_blank" rel="noopener noreferrer">
                             <i [class]="link.icon"></i>
                         </a>
                     }
@@ -41,26 +41,6 @@
             </div>
         </section>
         <hr class="m-0" />
-
-        <section class="resume-section" id="experience">
-            <div class="resume-section-content">
-                <h2 class="mb-5">Experience</h2>
-                @for (job of cvData.experience; track job.position) {
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">{{ job.position }}</h3>
-                            <div class="subheading mb-3">{{ job.company }}</div>
-                            <p>{{ job.description }}</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">{{ job.period }}</span></div>
-                    </div>
-                } @empty {
-                    <p>No hay experiencia laboral registrada.</p>
-                }
-            </div>
-        </section>
-        <hr class="m-0" />
-
         <section class="resume-section" id="education">
             <div class="resume-section-content">
                 <h2 class="mb-5">Formación</h2>
@@ -81,6 +61,45 @@
         </section>
         <hr class="m-0" />
 
+        <section class="resume-section" id="managerjobs">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Experiencia Administrativa</h2>
+                @for (job of cvData.managerjobs; track job.position) {
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="my-0">{{ job.position }}</h3>
+                            <div class="subheading my-0">{{ job.company }}</div>
+                            <p>{{ job.description }}</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">{{ job.period }}</span></div>
+                    </div>
+                } @empty {
+                    <p>No hay experiencia laboral registrada.</p>
+                }
+            </div>
+        </section>
+        <hr class="m-0" />
+        <section class="resume-section" id="experience">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Experiencia Docente</h2>
+                @for (job of cvData.experience; track job.position) {
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="my-0">{{ job.position }}</h3>
+                            <div class="subheading my-0">{{ job.company }}</div>
+                            <p>{{ job.description }}</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">{{ job.period }}</span></div>
+                    </div>
+                } @empty {
+                    <p>No hay experiencia laboral registrada.</p>
+                }
+            </div>
+        </section>
+        <hr class="m-0" />
+
+
+
         <section class="resume-section" id="skills">
             <div class="resume-section-content">
                 <h2 class="mb-5">Skills</h2>
@@ -99,25 +118,6 @@
                         }
                     </ul>
                     <br> }
-
-                <div class="subheading mb-3 mt-4">Programación General & Herramientas</div>
-                <ul class="list-inline dev-icons">
-                    @for (iconClass of cvData.devIcons; track $index) {
-                        <li class="list-inline-item">
-                            <i [class]="iconClass"></i>
-                        </li>
-                    }
-                </ul>
-
-                <div class="subheading mb-3 mt-4">Workflow</div>
-                <ul class="fa-ul mb-0">
-                    @for (item of cvData.workflow; track $index) {
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            {{ item.description }}
-                        </li>
-                    }
-                </ul>
             </div>
         </section>
         <hr class="m-0" />
