@@ -14,6 +14,23 @@ export interface Experience {
   period: string; // Ej: 'March 2013 - Present'
 }
 
+export interface Production {
+  title: string;
+  description: string;
+  organization?: string;
+  stack: string[];
+  link?: string;
+}
+
+export interface Publication {
+  type: string;
+  title: string;
+  date: string;
+  url: string;
+  ISSN_ISBN?: string;
+  publisher?: string;
+}
+
 /** Estructura para un título de educación */
 export interface Education {
   institution: string;
@@ -59,8 +76,10 @@ export interface CvData {
   socialLinks: SocialLink[];
 
   // --- Experience ---
-  experience: Experience[];
   managerjobs: Experience[];
+  experience: Experience[];
+  softwareProduction: Production[];
+  publications: Publication[];
   // --- Education ---
   education: Education[];
 

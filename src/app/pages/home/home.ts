@@ -17,10 +17,8 @@ export class Home {
           { name: 'Formación', href: '#education' },
           { name: 'Directivo', href: '#managerjobs' },
           { name: 'Docencia', href: '#experience' },
-          { name: '+Experiencia', href: '#experience' },
-          { name: 'Producción', href: '#skills' },
-          { name: 'Software', href: '#skills' },
-          { name: 'Dirección Trabajos', href: '#skills' },
+          { name: 'Publicaciones', href: '#production' },
+          { name: 'Software', href: '#softwareProduction' },
           { name: 'Skills', href: '#skills' },
 
 
@@ -52,7 +50,7 @@ export class Home {
           { name: 'Laravel', level: 4 },
           { name: 'Yii', level: 4 },
           { name: 'C#', level: 3 },
-          { name: '.NET Framework', level: 3 },
+          { name: '.NET', level: 3 },
           { name: 'Loopback', level: 3 },
           { name: 'Express js', level: 3 },
           { name: 'MySQL', level: 4 },
@@ -71,10 +69,10 @@ export class Home {
           { name: 'Ionic', level: 4 },
           { name: 'VUE', level: 3 },
           { name: 'HTML5 - CSS3 - JS', level: 4 },
-          { name: 'Typescript *', level: 3 },
-          { name: 'Bootstrap', level: 4 },
+          { name: 'Typescript *', level: 4 },
+          { name: 'Bootstrap', level: 5 },
           { name: 'JQuery', level: 4 },
-          { name: 'Frameworks CSS', level: 3 },
+          { name: 'CSS/SASS', level: 4 },
         ]
       },
       {
@@ -184,6 +182,94 @@ export class Home {
           },
 
 
+      ],
+      softwareProduction: [
+        {
+            title: 'GI2T Web',
+            description: 'Portal de gestión e investigación (desarrollado y mantenido en GI2T)',
+            organization: 'Ingeniería de Sistemas - Universidad del Pacífico',
+            stack: ['Angular', 'Laravel', 'MySQL'],
+            link: 'https://gi2t.org'
+        },
+        {
+            title: 'EmocioApp',
+            description: 'Aplicación móvil como parte de la Maestría en Innovación Educativa para apoyar competencias socioemocionales.',
+            organization: 'Universidad ICESI',
+            stack: ['Ionic', 'Laravel', 'MySQL'],
+        },
+        {
+            title: 'Mandanga',
+            description: 'Aplicación Universitaria para la generación de recibos de pago, matricula académica, registro de asistencia y gestión de calificaciones.',
+            organization: 'CLibre SAS',
+            stack: ['Yii', 'PHP', 'MySQL', 'JQuery', 'Jquery UI']
+        },
+        {
+            title: 'Mandanga - Aula 166',
+            description: 'Aplicación web para instituciones educativas gestión de matricula, notas, asistencia y generación de reportes.',
+            organization: 'CLibre SAS',
+            stack: ['Yii', 'PHP', 'MySQL', 'JQuery', 'Jquery UI']
+        },
+        {
+            title: 'Octágono - Gestión Académica Escolar',
+            description: 'Evolución de la plataforma Mandanga una nueva solucion más solida para la gestión académica y administrativa del colegio.',
+            stack: ['Laravel', 'PHP', 'MySQL', 'Angular'],
+        },
+        {
+            title: 'Portal Turístico de Buenaventura',
+            description: 'Implementación de Plataforma Digital para la Integración de Servicios del Sector Turístico de las empresas adscritas a la Cámara de Comercio de Buenaventura',
+            organization: 'Cámara de Comercio de Buenaventura / Univalle - Sede Pacífico',
+            stack: ['Laravel', 'Vue', 'Mongo', 'Angular'],
+        },
+        {
+            title: 'PIP',
+            description: 'Plataforma Integrada de Inversión Pública',
+            stack: ['AngularJS', 'C#', 'SQLServer', '.NET Framework', 'Bootstrap'],
+            organization: 'DNP - Departamento Nacional de Planeación',
+        },
+        {
+            title: 'SARA - Sistema Academico para Resultados de Aprendizaje',
+            description: 'Aplicación para la gestión de competencias, resultados de aprendizaje (RAP) y componentes de formación.',
+            stack: ['Laravel', 'PHP', 'MySQL', 'Angular'],
+        },
+        {
+            title: 'SAT - Sistema de Alertas Tempranas',
+            description: 'Aplicación institucional utilizada para gestionar el sistema de alertas tempranas de los estudiantes.',
+            organization: 'Sigma 7',
+            stack: ['Laravel', 'PHP', 'MySQL', 'Angular'],
+        },
+        {
+            title: 'PASA - Paz y Salvos Institucionales',
+            description: 'Aplicación institucional utilizada para gestionar los paz y salvos empleados.',
+            organization: 'Sigma 7',
+            stack: ['Laravel', 'PHP', 'MySQL', 'Angular'],
+        }
+      ],
+
+      publications: [
+        {
+          type: "Documento de trabajo",
+          title: "Explorando el panorama de uso y acceso a las TIC entre estudiantes de media vocacional. Un estudio en el Distrito de Buenaventura",
+          date: "2023",
+          url: "https://zenodo.org/records/12754339",
+          ISSN_ISBN: "DOI: https://doi.org/10.5281/zenodo.12754339",
+          publisher: "Grupo de Investigación GI2T"
+        },
+        {
+          type: "Libro de formación",
+          title: "Modelo para la evaluación de infraestructura TI en instituciones educativas",
+          date: "2024-12",
+          url: "https://atenaeditora.com.br/catalogo/ebook/modelo-para-la-evaluacion-de-infraestructura-ti-en-instituciones-educativas",
+          ISSN_ISBN: "Ebook - ISBN: 978-65-258-3026-1",
+          publisher: "Atena Editorial"
+        },
+        {
+          type: "Boletines",
+          title: "Boletín Insights. Tecnología, Sociedad y Educación. Caracterización Uso y Accesos a las TIC (15 IEs)",
+          date: "2023-11-22",
+          url: "https://gi2t.org/documents/boletines/",
+          ISSN_ISBN: "ISSN 3028-5879",
+          publisher: "Grupo de Investigación GI2T"
+        }
       ],
 
       // ----------------------------------------------------------------------

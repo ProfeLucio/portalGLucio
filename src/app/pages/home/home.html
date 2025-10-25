@@ -27,7 +27,7 @@
                     <span class="text-primary">{{ cvData.lastName }}</span>
                 </h1>
                 <div class="subheading mb-5">
-                    {{ cvData.address }} · {{ cvData.phone }} ·
+                    {{ cvData.address }} ·
                     <a [href]="'mailto:' + cvData.email">{{ cvData.email }}</a>
                 </div>
                 <p class="lead mb-5">{{ cvData.summary }}</p>
@@ -98,6 +98,50 @@
         </section>
         <hr class="m-0" />
 
+        <section class="resume-section" id="production">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Publicaciones</h2>
+                @for (publication of cvData.publications; track publication.title) {
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                          <h4 class="my-0 py-0">{{ publication.title }}</h4>
+                          <div class="subheading my-0">{{ publication.type}}</div>
+                          <small class="my-0">{{ publication.date}}</small>
+                          <p class="my-0">Editorial: {{ publication.publisher}}</p>
+                          <small>{{ publication.ISSN_ISBN }}</small>
+                        </div>
+                    </div>
+                } @empty {
+                    <p>No hay experiencia laboral registrada.</p>
+                }
+            </div>
+        </section>
+        <hr class="m-0" />
+
+        <section class="resume-section" id="softwareProduction">
+                  <div class="resume-section-content">
+                      <h2 class="mb-5">Desarrollo de Software</h2>
+                      @for (software of cvData.softwareProduction; track software.title) {
+                          <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                              <div class="flex-grow-1">
+                                  <h3 class="my-0">{{ software.title }}</h3>
+                                  <p class="my-0">Organización: {{ software.organization }}</p>
+                                  <small class="text-primary my-0">{{ software.description }}</small>
+                                  <small class="text-secondary py-0 my-0"> @for (stack of software.stack; track stack) {
+                                           {{ stack }}&nbsp;
+                                      }
+                                  </small>
+                              </div>
+                          </div>
+                      } @empty {
+                          <p>No hay experiencia laboral registrada.</p>
+                      }
+                  </div>
+
+
+        </section>
+        <hr class="m-0" />
+
 
 
         <section class="resume-section" id="skills">
@@ -123,27 +167,5 @@
         <hr class="m-0" />
 
 
-        <section class="resume-section" id="interests">
-            <div class="resume-section-content">
-                <h2 class="mb-5">Interests</h2>
-                <p>{{ cvData.interestsParagraph1 }}</p>
-                <p class="mb-0">{{ cvData.interestsParagraph2 }}</p>
-            </div>
-        </section>
-        <hr class="m-0" />
-
-        <section class="resume-section" id="awards">
-            <div class="resume-section-content">
-                <h2 class="mb-5">Awards & Certifications</h2>
-                <ul class="fa-ul mb-0">
-                    @for (award of cvData.awards; track $index) {
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            <span [innerHTML]="award.description"></span>
-                        </li>
-                    }
-                </ul>
-            </div>
-        </section>
     </div>
 </main>
